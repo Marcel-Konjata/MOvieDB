@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { popularTVFetch } from "./dataFetch";
+import Layout from "./components/Layout";
+class App extends React.Component {
+   state = {
+      popularTV: []
+   };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   // async componentDidMount(){
+   //   const response = await popularTVFetch('tv/popular','cs');
+   //  let data = response.data;
+   //   console.log(data);
+   // }
+
+   render() {
+      console.log(this.state.popularTV);
+      return (
+         <div className="App">
+            <Layout>
+               <TVBanner />
+               <MovieBanner />
+            </Layout>
+         </div>
+      );
+   }
 }
 
 export default App;
