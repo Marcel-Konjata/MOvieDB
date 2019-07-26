@@ -4,7 +4,7 @@ const APIkey = "?api_key=6cd482fbfe7654e38844849abf1268d8";
 const baseURL = "https://api.themoviedb.org/3";
 const languageQuery = "&language=";
 const pageQuery = "&page="
-
+export const IMAGE_BASEURL = "https://image.tmdb.org/t/p/"
 
 // basic fetches for movies and tv show lists
 export function TVFetch(requestURL, lang = "en") {
