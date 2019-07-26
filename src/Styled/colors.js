@@ -1,0 +1,1 @@
+export const menuGreen = '#39FFB8';

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Wrapper } from "Styled/elements";
+import { MediaSelection } from "components/navigations";
+import { menuGreen } from "Styled/colors";
+
+// at bottom are CSS components
 
 export default class MainHeader extends Component {
     state = {
@@ -12,7 +16,6 @@ export default class MainHeader extends Component {
 
     handleHover = (event) => {
         const {name} = event.target;
-
         if(name==='movies'){
             this.setState({
                 showMovieMenu: true,
@@ -36,12 +39,13 @@ export default class MainHeader extends Component {
             <Wrapper>
                <div className="navigations">
                   <Navigation>
-                     <a href="#" name="movies" onMouseEnter={(event)=>this.handleHover(event)}>Filmy</a>
-                     <a href="#" name="tv" onMouseEnter={(event)=>this.handleHover(event)}>Serialy</a>
+                    <MediaSelection mediaType="movie" />
+                    <MediaSelection mediaType="tv" />
+                     
                   </Navigation>
                   <Navigation>
                      <p>jazyk</p>
-                     <a href=""> {this.state.selectedLanguage}</a>
+                     <button  className="selection"> {this.state.selectedLanguage}</button>
                   </Navigation>
                </div>
             </Wrapper>
@@ -49,6 +53,8 @@ export default class MainHeader extends Component {
       );
    }
 }
+
+// CSS STyles
 
 const StyledHeader = styled.header`
    .logo {
@@ -63,26 +69,35 @@ const StyledHeader = styled.header`
          #010101 22.85%,
          #05ba84 50.69%,
          #000000 73.26%
+         
       );
+      padding:10px;
       font-family: "Roboto", sans-serif;
       display: flex;
+     align-items: center;
       color: white;
-      padding: 15px 20px;
+      
       font-size: 18px;
       font-weight: bold;
       justify-content: space-between;
-      a {
-         text-decoration: none;
-         color: inherit;
+      .selection{
+         padding: 5px;
+         margin-left:5px;
+         border-radius:5px;
+         &:hover{
+            background-color: transparent;
+           border: 1px solid ${menuGreen};
+           color:  ${menuGreen};
+      } 
       }
+     
    }
 `;
 
 const Navigation = styled.nav`
    display: flex;
-   a:not(:first-child) {
-       display:block;
-       margin-left:25px;
+   align-items: center;
+   position: relative;
        
-   }
-`;
+   
+`

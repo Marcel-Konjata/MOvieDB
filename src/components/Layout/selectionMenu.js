@@ -1,9 +1,24 @@
 import React from "react";
+import styled from "styled-components";
+import { menuGreen } from "Styled/colors";
 
-function SelectionMenu(props) {
-   if ((props.lang = "cs")) {
+
+function SelectionMenu({lang ="cs", mediumType}) {
+   if (lang === "cs") {
       return (
-         <div>
+         mediumType === 'tv' ?
+      
+         <StyledSelect>
+            <ul>
+               <li>oblibene </li>
+               <li>nejlepe hodnocene </li>
+               <span>
+                  <li>prave v TV</li>
+                  <li>vysila se dnes</li>
+               </span>
+            </ul>
+         </StyledSelect> : 
+         <StyledSelect>
             <ul>
                <li>oblibene </li>
                <li>nejlepe hodnocene </li>
@@ -12,12 +27,25 @@ function SelectionMenu(props) {
                   <li>vyjde</li>
                </span>
             </ul>
-         </div>
+         </StyledSelect>
+
+      
       );
    }
-   if ((props.lang = "en")) {
+   if (lang === "en") {
       return (
-         <div>
+         mediumType === 'tv' ?
+         <StyledSelect>
+            <ul>
+               <li>popular </li>
+               <li>top rated </li>
+               <span>
+                  <li> on air </li>
+                  <li>airing today</li>
+               </span>
+            </ul>
+         </StyledSelect> :
+         <StyledSelect>
             <ul>
                <li>popular </li>
                <li>top rated </li>
@@ -26,9 +54,27 @@ function SelectionMenu(props) {
                   <li>upcoming</li>
                </span>
             </ul>
-         </div>
+         </StyledSelect> 
+
       );
    }
 }
 
 export default SelectionMenu;
+
+const StyledSelect = styled.div`
+    position: absolute;
+    bottom:-106px;
+    padding: 15px;
+    left: 0;
+    width: 290px;
+    z-index: 2;
+    background-color: #252525;
+    border: ${menuGreen} 1px solid;
+    ul{list-style: none;}
+    
+   span{
+       display: flex;
+       justify-content: space-between;
+    }
+`;

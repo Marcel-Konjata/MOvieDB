@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-const AppWrapper = styled.div`
-min-height: 100vh;
+const GlobalStyle = createGlobalStyle`
+ body {min-height: 100vh;
 display: flex;
 flex-direction: column;
 
@@ -24,6 +24,7 @@ flex-direction: column;
    h3 {
       font-family: "Roboto";
    }
+}
 `;
 
-export default AppWrapper;
+export default GlobalStyle;
