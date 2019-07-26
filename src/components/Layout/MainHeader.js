@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Wrapper } from "Styled/elements";
-import { MediaSelection } from "components/navigations";
-import { menuGreen } from "Styled/colors";
+import { MediaSelection, LanguageSelection } from "components/navigations";
+
 
 // at bottom are CSS components
 
@@ -14,25 +14,14 @@ export default class MainHeader extends Component {
 
     }
 
-    handleHover = (event) => {
-        const {name} = event.target;
-        if(name==='movies'){
-            this.setState({
-                showMovieMenu: true,
-                showTvMenu:false
-            })
-        }
-        if(name==='tv'){
-            this.setState({
-                showMovieMenu: false,
-                showTvMenu:true
-            })
-        }
-        
-    }
+   handleSelect=(event)=>{
+      this.setState({
+         selectedLanguage: event.target.id
+      })
+   }
 
    render() {
-    
+   
       return (
          <StyledHeader>
             <h1 className="logo"> MOVIE DB </h1>
@@ -44,8 +33,7 @@ export default class MainHeader extends Component {
                      
                   </Navigation>
                   <Navigation>
-                     <p>jazyk</p>
-                     <button  className="selection"> {this.state.selectedLanguage}</button>
+                     <LanguageSelection lang={this.state.selectedLanguage} selectLang={this.handleSelect} />
                   </Navigation>
                </div>
             </Wrapper>
@@ -80,18 +68,10 @@ const StyledHeader = styled.header`
       font-size: 18px;
       font-weight: bold;
       justify-content: space-between;
-      .selection{
-         padding: 5px;
-         margin-left:5px;
-         border-radius:5px;
-         &:hover{
-            background-color: transparent;
-           border: 1px solid ${menuGreen};
-           color:  ${menuGreen};
-      } 
+      
       }
      
-   }
+   
 `;
 
 const Navigation = styled.nav`

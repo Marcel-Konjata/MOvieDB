@@ -64,15 +64,22 @@ export default SelectionMenu;
 
 const StyledSelect = styled.div`
     position: absolute;
-    bottom:-106px;
-    padding: 15px;
+    bottom:-126px;
+    padding: 10px;
     left: 0;
     width: 290px;
     z-index: 2;
     background-color: #252525;
     border: ${menuGreen} 1px solid;
+    color: ${menuGreen};
+
     ul{list-style: none;}
-    
+    li{
+       font-weight: 400;
+       cursor:pointer;
+       padding: 5px;
+       display: block;
+    }
    span{
        display: flex;
        justify-content: space-between;

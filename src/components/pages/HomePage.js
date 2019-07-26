@@ -1,12 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Banners from "Styled/grids/Banners";
 import { GridBanner } from "Styled/grids/GridBanner";
 import { DescriptionForBanner } from "Styled";
 import { MainBanner } from "components/mainBanners";
+import styled from "styled-components";
 
 function HomePage(props) {
    return (
-      <Fragment>
+      <IntroSection>
          <Banners>
             <GridBanner reverse left>
                <DescriptionForBanner>
@@ -21,8 +22,12 @@ function HomePage(props) {
                <MainBanner fetch="movie" />
             </GridBanner>
          </Banners>
-      </Fragment>
+      </IntroSection>
    );
 }
 
 export default HomePage;
+
+const IntroSection = styled.section`
+margin-top: 120px;
+`;

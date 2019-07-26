@@ -17,7 +17,7 @@ class App extends React.Component {
    render() {
       return (
          <BrowserRouter>
-               <div>
+               <>
                <GlobalStyle />
                   <Layout>
                      <Route exact path="/" component={HomePage} />
@@ -26,7 +26,7 @@ class App extends React.Component {
                      <Route path="/tv/:id" component={HomePage} />
                      <Route path="/movie/:id" component={HomePage} />
                   </Layout>
-               </div>
+               </>
            
          </BrowserRouter>
       );
