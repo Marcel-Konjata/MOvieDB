@@ -1,10 +1,13 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Layout from "./components/Layout";
 
 import GlobalStyle from "Styled/global";
 import HomePage from "components/pages/HomePage";
+import ListOfCards from "components/pages/ListOfcards";
+import DetailInfo from "components/pages/DetailInfo";
+import SearchResults from "components/pages/SearchResults";
 
 class App extends React.Component {
    // this is pre written style of data fetching for elemnts containing movie bd info
@@ -17,17 +20,17 @@ class App extends React.Component {
    render() {
       return (
          <BrowserRouter>
-               <>
+            <>
                <GlobalStyle />
-                  <Layout>
+               <Layout>
+                  <Switch>
                      <Route exact path="/" component={HomePage} />
-                     <Route path="/tv/:searchType" component={HomePage} />
-                     <Route path="/movie/:searchType" component={HomePage} />
-                     <Route path="/tv/:id" component={HomePage} />
-                     <Route path="/movie/:id" component={HomePage} />
-                  </Layout>
-               </>
-           
+                     <Route  path="/:media/:searchType" render={props => <ListOfCards {...props} />} />
+                     <Route path="/:media/detail/:id" component={DetailInfo} />
+                     <Route path="/search/:keyword" component={SearchResults} />
+                  </Switch>
+               </Layout>
+            </>
          </BrowserRouter>
       );
    }

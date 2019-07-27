@@ -36,6 +36,8 @@ min-height: 100%;
       font-family: "Roboto";
    }
 }
+a{ color: inherit;
+text-decoration: none;}
 `;
 
 export default GlobalStyle;

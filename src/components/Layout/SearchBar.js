@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {ReactComponent as SearchIco} from "svg/search.svg"
 function SearchBar() {
    const [searchValue, setSearchValue] = React.useState("");
    console.log(searchValue)
@@ -12,12 +12,12 @@ function SearchBar() {
       <StyledSearch>
          <form onSubmit={e=>handleSubmit(e)}>
             <input
-               type={Text}
+               type="text"
                placeholder="vyhledat film/serial"
                value={searchValue}
                onChange={e => setSearchValue(e.target.value)}
             />
-            <button> vyhledat</button>
+            <button><SearchIco/></button>
          </form>
       </StyledSearch>
    );
@@ -43,6 +43,21 @@ const StyledSearch = styled.div`
        display: flex;
        justify-content: center;
        align-items: center;
+       input{
+           padding: 5px 10px;
+           font-family: 'Poppins';
+       }
+       button{
+           background: white;
+           border: 1px solid black;
+           padding: 2px 4px;
+           cursor: pointer;
+           margin-left: 10px;
+           
+           &:focus{
+               outline:none;
+           }
+       }
    }
 `;
 

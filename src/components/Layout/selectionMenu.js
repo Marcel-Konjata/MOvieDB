@@ -1,61 +1,95 @@
 import React from "react";
 import styled from "styled-components";
 import { menuGreen } from "Styled/colors";
+import { Link } from "react-router-dom";
 
-
-function SelectionMenu({lang ="cs", mediumType}) {
+function SelectionMenu({ lang = "cs", mediumType }) {
    if (lang === "cs") {
-      return (
-         mediumType === 'tv' ?
-      
+      return mediumType === "tv" ? (
          <StyledSelect>
             <ul>
-               <li>oblibene </li>
-               <li>nejlepe hodnocene </li>
+               <li>
+                  <Link to={`/${mediumType}/popular`}>oblibene</Link>
+               </li>
+               <li>
+                  <Link to={`/${mediumType}/top_rated`}>nejlepe hodnocene</Link>
+               </li>
                <span>
-                  <li>prave v TV</li>
-                  <li>vysila se dnes</li>
-               </span>
-            </ul>
-         </StyledSelect> : 
-         <StyledSelect>
-            <ul>
-               <li>oblibene </li>
-               <li>nejlepe hodnocene </li>
-               <span>
-                  <li>prave v kinech </li>
-                  <li>vyjde</li>
+                  <li>
+                     <Link to={`/${mediumType}/on_the_air`}>prave v TV</Link>
+                  </li>
+                  <li>
+                     <Link to={`/${mediumType}/airing_today`}>
+                        vysila se dnes
+                     </Link>
+                  </li>
                </span>
             </ul>
          </StyledSelect>
-
-      
+      ) : (
+         <StyledSelect>
+            <ul>
+               <li>
+                  <Link to={`/${mediumType}/popular`}>oblibene</Link>{" "}
+               </li>
+               <li>
+                  <Link to={`/${mediumType}/top_rated`}>nejlepe hodnocene</Link>{" "}
+               </li>
+               <span>
+                  <li>
+                     <Link to={`/${mediumType}/now_playing`}>
+                        prave v kinech
+                     </Link>{" "}
+                  </li>
+                  <li>
+                     <Link to={`/${mediumType}/upcoming`}>vyjde</Link>
+                  </li>
+               </span>
+            </ul>
+         </StyledSelect>
       );
    }
    if (lang === "en") {
-      return (
-         mediumType === 'tv' ?
+      return mediumType === "tv" ? (
          <StyledSelect>
             <ul>
-               <li>popular </li>
-               <li>top rated </li>
+               <li>
+                  <Link to={`/${mediumType}/popular`}>popular </Link>
+               </li>
+               <li>
+                  <Link to={`/${mediumType}/top_rated`}>top rated </Link>
+               </li>
                <span>
-                  <li> on air </li>
-                  <li>airing today</li>
+                  <li>
+                     <Link to={`/${mediumType}/on_the_air`}>on air </Link>
+                  </li>
+                  <li>
+                     <Link to={`/${mediumType}/airing_today`}>
+                        airing today
+                     </Link>
+                  </li>
                </span>
             </ul>
-         </StyledSelect> :
+         </StyledSelect>
+      ) : (
          <StyledSelect>
             <ul>
-               <li>popular </li>
-               <li>top rated </li>
+               <li>
+                  <Link to={`/${mediumType}/popular`}>popular</Link>{" "}
+               </li>
+               <li>
+                  <Link to={`/${mediumType}/top_rated`}>top rated </Link>
+               </li>
                <span>
-                  <li> in cinemas </li>
-                  <li>upcoming</li>
+                  <li>
+                     <Link to={`/${mediumType}/now_playing`}>in cinemas </Link>
+                  </li>
+                  <li>
+                     <Link to={`/${mediumType}/upcoming`}>upcoming</Link>
+                  </li>
                </span>
             </ul>
-         </StyledSelect> 
-
+         </StyledSelect>
       );
    }
 }
@@ -63,25 +97,27 @@ function SelectionMenu({lang ="cs", mediumType}) {
 export default SelectionMenu;
 
 const StyledSelect = styled.div`
-    position: absolute;
-    bottom:-126px;
-    padding: 10px;
-    left: 0;
-    width: 290px;
-    z-index: 2;
-    background-color: #252525;
-    border: ${menuGreen} 1px solid;
-    color: ${menuGreen};
+   position: absolute;
+   bottom: -126px;
+   padding: 10px;
+   left: 0;
+   width: 290px;
+   z-index: 2;
+   background-color: #252525;
+   border: ${menuGreen} 1px solid;
+   color: ${menuGreen};
 
-    ul{list-style: none;}
-    li{
-       font-weight: 400;
-       cursor:pointer;
-       padding: 5px;
-       display: block;
-    }
-   span{
-       display: flex;
-       justify-content: space-between;
-    }
+   ul {
+      list-style: none;
+   }
+   li {
+      font-weight: 400;
+      cursor: pointer;
+      padding: 5px;
+      display: block;
+   }
+   span {
+      display: flex;
+      justify-content: space-between;
+   }
 `;

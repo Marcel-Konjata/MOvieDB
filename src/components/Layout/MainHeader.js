@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import {Link} from "react-router-dom";
 import { Wrapper } from "Styled/elements";
 import { MediaSelection, LanguageSelection } from "components/navigations";
-
+import styled from "styled-components";
 
 // at bottom are CSS components
 
@@ -24,7 +24,7 @@ export default class MainHeader extends Component {
    
       return (
          <StyledHeader>
-            <h1 className="logo"> MOVIE DB </h1>
+            <h1 className="logo"><Link to="/">MOVIE DB</Link>  </h1> 
             <Wrapper>
                <div className="navigations">
                   <Navigation>
