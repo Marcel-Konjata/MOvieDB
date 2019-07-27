@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 
-function SelectionCard({key, id, name, title, poster_path, vote_average}) {
+function SelectionCard({id, name, title, poster_path, vote_average}) {
     return (
-        <StyledCard key={key}>
+        <StyledCard>
            <figcaption>
             <h3>{name ? `${name} `: `${title} `}</h3>
 
