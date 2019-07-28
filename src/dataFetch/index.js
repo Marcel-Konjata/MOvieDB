@@ -27,7 +27,7 @@ export function dataFetch(media, searchType, lang = "en", page = "1") {
       );
    else
       return Axios.get(
-         `${baseURL}/${media}/${searchType}${APIkey}${languageQuery}${lang}${pageQuery}`
+         `${baseURL}/${media}/${searchType}${APIkey}${languageQuery}${lang}${pageQuery}${page}`
       );
 }
 

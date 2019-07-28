@@ -5,17 +5,22 @@ import styled from "styled-components";
 import PageNumbers from "components/cards/pageNumbers";
 
 class ListOfCards extends React.Component {
-   state = { data: [], loading: true };
+   state = { data: [], loading: true, activePage: 1 };
 
    async componentDidMount() {
       const { media, searchType } = this.props.match.params;
-      let response = await dataFetch(media, searchType);
+      let response = await dataFetch(
+         media,
+         searchType,
+         "en",
+         this.state.activePage
+      );
       const data = await response.data;
       this.setState({ data: data, loading: false });
    }
 
    // did update is necessary to change state after clicking on diferrent link passing new params
-   componentDidUpdate(prevProps) {
+   componentDidUpdate(prevProps, prevState) {
       if (prevProps === undefined) {
          return false;
       }
@@ -25,10 +30,29 @@ class ListOfCards extends React.Component {
             this.props.match.params.searchType
       ) {
          //reset state to original value, loading is necessary data are not
-         this.setState({ loading: true, data: [] });
+         this.setState({ loading: true, data: [], activePage: 1 });
+         // then refetch data based on new criterias
          (async () => {
             const { media, searchType } = this.props.match.params;
-            let response = await dataFetch(media, searchType);
+            let response = await dataFetch(
+               media,
+               searchType,
+               "en",
+               this.state.activePage
+            );
+            const data = await response.data;
+            this.setState({ data: data, loading: false });
+         })();
+      }
+      if (this.state.activePage !== prevState.activePage) {
+         (async () => {
+            const { media, searchType } = this.props.match.params;
+            let response = await dataFetch(
+               media,
+               searchType,
+               "en",
+               this.state.activePage
+            );
             const data = await response.data;
             this.setState({ data: data, loading: false });
          })();
@@ -40,7 +64,12 @@ class ListOfCards extends React.Component {
          return <SelectionCard {...item} key={item.id} />;
       });
 
+   handlePageNumber = numberToSet => {
+      this.setState({ activePage: numberToSet });
+   };
+
    render() {
+      console.log(this.state.activePage);
       return (
          <section>
             <h1>{this.props.match.params.media}</h1>
@@ -49,8 +78,21 @@ class ListOfCards extends React.Component {
                "loading component will be there"
             ) : (
                <React.Fragment>
+                  {this.props.match.params.searchType !== "discover" && (
+                     <PageNumbers
+                        pages={this.state.data.total_pages}
+                        activePage={this.state.activePage}
+                        setPage={this.handlePageNumber}
+                     />
+                  )}
                   <CardGrid>{this.updateCards()}</CardGrid>
-                  <PageNumbers pages={this.state.data.total_pages} />
+                  {this.props.match.params.searchType !== "discover" && (
+                     <PageNumbers
+                        pages={this.state.data.total_pages}
+                        activePage={this.state.activePage}
+                        setPage={this.handlePageNumber}
+                     />
+                  )}
                </React.Fragment>
             )}
          </section>
@@ -63,9 +105,10 @@ export default ListOfCards;
 
 const CardGrid = styled.div`
    max-width: 1000px;
-   margin: 0 auto;
+   min-height: 900px;
+   margin: 50px auto 100px;
    display: grid;
    justify-items: center;
-   align-items: end;
+   align-items: center;
    grid-template-columns: repeat(5, auto);
 `;
