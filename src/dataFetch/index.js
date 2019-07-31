@@ -31,4 +31,16 @@ export function dataFetch(media, searchType, lang = "en", page = "1") {
       );
 }
 
-// fetches for clicked event
+// fetches for clicked detail
+
+export function getDetails(media, id, lang='en') {
+   return Axios.get(
+      `${baseURL}/${media}/${id}${APIkey}${languageQuery}${lang}`
+   );
+}
+
+export function getCredits(media, id){
+   return Axios.get(
+      `${baseURL}/${media}/${id}/credits${APIkey}`
+   );
+}

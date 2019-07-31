@@ -61,7 +61,7 @@ class ListOfCards extends React.Component {
    // this function renders all card gained from fetch
    updateCards = () =>
       this.state.data.results.map(item => {
-         return <SelectionCard {...item} key={item.id} />;
+         return <SelectionCard {...item} key={item.id} media={this.props.match.params.media} />;
       });
 
    handlePageNumber = numberToSet => {
@@ -69,7 +69,7 @@ class ListOfCards extends React.Component {
    };
 
    render() {
-      console.log(this.state.activePage);
+      
       return (
          <section>
             <h1>{this.props.match.params.media}</h1>
@@ -108,6 +108,7 @@ const CardGrid = styled.div`
    min-height: 900px;
    margin: 50px auto 100px;
    display: grid;
+   row-gap: 50px;
    justify-items: center;
    align-items: center;
    grid-template-columns: repeat(5, auto);

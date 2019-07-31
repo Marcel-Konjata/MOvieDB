@@ -31,6 +31,7 @@ const StyledFooter = styled.footer`
 display: flex;
 justify-content: flex-end;
 align-items: center;
+padding-top: 50px;
 .text{
     margin-left: auto;
     color: ${footerGreen};

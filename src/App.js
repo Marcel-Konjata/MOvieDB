@@ -25,8 +25,8 @@ class App extends React.Component {
                <Layout>
                   <Switch>
                      <Route exact path="/" component={HomePage} />
-                     <Route  path="/:media/:searchType" render={props => <ListOfCards {...props} />} />
-                     <Route path="/:media/detail/:id" component={DetailInfo} />
+                     <Route exact path="/:media/:searchType" render={props => <ListOfCards {...props} />} />
+                     <Route exact path="/:media/detail/:id" component={DetailInfo} />
                      <Route path="/search/:keyword" component={SearchResults} />
                   </Switch>
                </Layout>
