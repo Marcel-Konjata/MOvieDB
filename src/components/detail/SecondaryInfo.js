@@ -15,29 +15,41 @@ class SecondaryInfo extends React.Component {
 
       this.setState({ data, loading: false });
    }
+   componentDidUpdate(prevProps) {
+      if (prevProps.id !== this.props.id) {
+         this.setState({ data: [], loading: true });
+         (async () => {
+            const { media, id } = this.props;
+            const response = await getCredits(media, id);
+            const data = response.data;
+
+            this.setState({ data, loading: false });
+         })();
+      }
+   }
 
    renderCast = () => {
       return this.state.data.cast.map((item, id) => {
          if (id < 5) return <CastCard {...item} key={item.id} />;
-         else return null
+         else return null;
       });
    };
 
    render() {
       return (
          <>
-         <SectionWrapper>
-            <TransitionImg>
-               <img src={triangle} alt="transition" />
-            </TransitionImg>
-            <h2 className="cast">Cast</h2>
-            <CardWrapper>
-               {this.state.loading
-                  ? "loading component here"
-                  : this.renderCast()}
-            </CardWrapper>
-         </SectionWrapper>
-         <CrewAndRating rate={this.props.rate} crew={this.state.data.crew}/>
+            <SectionWrapper>
+               <TransitionImg>
+                  <img src={triangle} alt="transition" />
+               </TransitionImg>
+               <h2 className="cast">Cast</h2>
+               <CardWrapper>
+                  {this.state.loading
+                     ? "loading component here"
+                     : this.renderCast()}
+               </CardWrapper>
+            </SectionWrapper>
+            <CrewAndRating rate={this.props.rate} crew={this.state.data.crew} />
          </>
       );
    }
@@ -50,14 +62,12 @@ const SectionWrapper = styled.section`
    max-width: 1200px;
    margin: 0 auto;
    position: relative;
-   .cast{
+   .cast {
       text-align: center;
       text-transform: uppercase;
       margin-bottom: 40px;
       font-size: 38px;
-      
    }
-
 `;
 const TransitionImg = styled.div`
    position: absolute;
@@ -66,9 +76,8 @@ const TransitionImg = styled.div`
 `;
 
 const CardWrapper = styled.div`
-
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+`;

@@ -1,4 +1,4 @@
-import Random3Indexes from "./randomGenerator"
+import RandomIndexes from "./randomGenerator"
 
 
-export {Random3Indexes};
+export {RandomIndexes};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TVFetch, movieFetch } from "../../dataFetch";
-import { Random3Indexes } from "../../utilities";
+import { RandomIndexes } from "../../utilities";
 import BannerCard from "./BannerCard";
 
 class MainBanner extends Component {
@@ -14,7 +14,7 @@ class MainBanner extends Component {
       let results = response.data.results;
 
       //get 3 random ids for display
-      const ids = Random3Indexes(results);
+      const ids = RandomIndexes(results,3);
       // each id will be use to add object to state with same index
       ids.map(id => {
          return this.setState(prevState => {
@@ -26,7 +26,7 @@ class MainBanner extends Component {
    }
 
    render() {
-      console.log(this.state.randomShowsToDisplay);
+     
       return (
          <React.Fragment>
             {this.state.loading

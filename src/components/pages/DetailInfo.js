@@ -6,6 +6,7 @@ import MainInfo from "components/detail/MainInfo";
 import SecondaryInfo from "components/detail/SecondaryInfo";
 import TrailerAndRecomend from "components/detail/TrailerAndRecomend";
 
+
 class DetailInfo extends React.Component {
    state = { data: [] };
 
@@ -15,6 +16,17 @@ class DetailInfo extends React.Component {
       const data = result.data;
 
       this.setState({ data });
+   }
+   componentDidUpdate(prevProps){
+      if(prevProps.match.params.id !== this.props.match.params.id ){
+         (async()=>{
+            const { media, id } = this.props.match.params;
+            const result = await getDetails(media, id);
+            const data = result.data;
+      
+            this.setState({ data });
+         })()
+      }
    }
 
    render() {
@@ -49,7 +61,13 @@ class DetailInfo extends React.Component {
                      rate={vote_average * 10}
                   />
 
-                  <TrailerAndRecomend>test</TrailerAndRecomend>
+                  <TrailerAndRecomend
+                     detailID={this.props.match.params.id}
+                     media={this.props.match.params.media}
+                     thumb={backdrop_path}
+                  />
+                    
+                  
                </React.Fragment>
             ) : (
                "loading component will be here"

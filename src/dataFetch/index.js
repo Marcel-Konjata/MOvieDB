@@ -44,3 +44,9 @@ export function getCredits(media, id){
       `${baseURL}/${media}/${id}/credits${APIkey}`
    );
 }
+
+export function getRecomended(media, id){
+   return Axios.get(
+      `${baseURL}/${media}/${id}/recommendations${APIkey}`
+   );
+}

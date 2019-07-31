@@ -1,6 +1,6 @@
-const generateRandom3Indexes = array => {
+const generateRandomIndexes = (array, desiredNumber = 3) => {
     const uniqueRandoms = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < desiredNumber; i++) {
        const randomNumber = Math.floor(Math.random() * array.length);
        let isUnique = true;
        if (i === 0) {
@@ -27,4 +27,4 @@ const generateRandom3Indexes = array => {
  };
  
  
- export default generateRandom3Indexes;
+ export default generateRandomIndexes;

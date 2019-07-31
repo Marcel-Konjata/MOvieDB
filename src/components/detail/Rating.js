@@ -22,7 +22,7 @@ function Rating({
          <svg className="progress-ring" height={size} width={size}>
             <circle
                className="progress-ring--circle"
-               stroke-width={strokeWidth}
+               strokeWidth={strokeWidth}
                fill="transparent"
                stroke={color}
                r={radius} //radius set how big it will be
@@ -31,7 +31,7 @@ function Rating({
             />
             <circle
                className="progress-ring--outer"
-               stroke-width={strokeWidth / 5}
+               strokeWidth={strokeWidth / 5}
                fill="transparent"
                stroke={mainGreen}
                r={radius + strokeWidth} //radius set how big it will be
@@ -40,7 +40,7 @@ function Rating({
             />
             <circle
                className="progress-ring--inner"
-               stroke-width={strokeWidth / 5}
+               strokeWidth={strokeWidth / 5}
                fill="transparent"
                stroke={mainGreen}
                r={radius - strokeWidth} //radius set how big it will be
