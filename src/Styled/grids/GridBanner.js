@@ -11,7 +11,20 @@ export const GridBanner = styled.div`
    grid-template-rows: auto;
    grid-template-columns: 1fr 1fr;
    grid-gap: 5px;
+   @media (max-width:509px) {
+     display: flex;
+     flex-direction:column;
+   
+   }
+   @media (max-width:600px) {
+      max-width: 550px;
+      width:100%;
+   
+   }
 
+ 
+
+   
    ${({right})=> right && `
    padding-left: 2px;
    

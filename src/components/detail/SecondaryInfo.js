@@ -4,6 +4,7 @@ import triangle from "./../../img/Subtract.png";
 import { getCredits } from "dataFetch";
 import CastCard from "components/cards/CastCard";
 import CrewAndRating from "./CrewAndRating";
+import { Localization } from "components/context/LanguageContext";
 
 class SecondaryInfo extends React.Component {
    state = { data: [], loading: true };
@@ -42,7 +43,9 @@ class SecondaryInfo extends React.Component {
                <TransitionImg>
                   <img src={triangle} alt="transition" />
                </TransitionImg>
-               <h2 className="cast">Cast</h2>
+               <Localization>
+                  {({ language }) => <h2 className="cast">{language ==='en'?'Cast':'Herci'}</h2>}
+               </Localization>
                <CardWrapper>
                   {this.state.loading
                      ? "loading component here"

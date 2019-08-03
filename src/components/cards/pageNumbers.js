@@ -24,7 +24,7 @@ function PageNumbers({ pages = 100, activePage = 1, setPage }) {
    );
 }
 //pagination created by for loop in react? well little imperative aproach doesnt hurt
-//since parrent component relies on props it will rerender anyway
+
 // still very performant
 function renderPageNumbers({ pages, activePage, setPage }) {
    const buttons = [];

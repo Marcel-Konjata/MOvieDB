@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { getRecomended } from "dataFetch";
-import generateRandomIndexes from "utilities/randomGenerator";
+
+import { Localization } from "components/context/LanguageContext";
 
 export default class RecomendedCard extends Component {
    state = { cardlist: [], loading: true };
@@ -14,22 +15,23 @@ export default class RecomendedCard extends Component {
    }
    renderCards = () => {
       const { cardlist } = this.state;
-      const randomRecomend = generateRandomIndexes(cardlist, 4);
-      return randomRecomend.map(index => (
-         <Card key={cardlist[index]}>
-            <Link to={`/${this.props.media}/detail/${cardlist[index].id}`}>
+     
+      return cardlist.map((item,index) => (
+         index < 4 ?
+         <Card key={item.id}>
+            <Link to={`/${this.props.media}/detail/${item.id}`}>
                <img
                   src={`${"https://image.tmdb.org/t/p/"}/w154${
-                     cardlist[index].poster_path
+                     item.poster_path
                   }`}
                   alt={
-                     cardlist[index].name
-                        ? `${cardlist[index].name} `
-                        : `${cardlist[index].title} `
+                     item.name
+                        ? `${item.name} `
+                        : `${item.title} `
                   }
                />
             </Link>
-         </Card>
+         </Card> : null
       ));
    };
 
@@ -39,10 +41,21 @@ export default class RecomendedCard extends Component {
             {this.state.loading ? (
                "loading"
             ) : (
-               <React.Fragment>
-                  <h2 className="recomendation-title">Recomendations</h2>
-                  <Recomendations>{this.renderCards()}</Recomendations>
+               <Localization>
+                 {({language})=>(
+                  <React.Fragment>
+                     <h2 className="recomendation-title">{language === 'en'? 'Recommendations':'Doporučené'}</h2>
+                      <Recomendations>
+                        {this.state.cardlist.length>0?
+                        this.renderCards()
+                        :<h2>
+                           {language==='en'? 'there is not recommendations to this one yet': 'zatím zde nejsou doporučení k tomuto detailu'}
+                        </h2>}
+                     </Recomendations>
                </React.Fragment>
+                 )} 
+               </Localization>
+             
             )}
          </FlexBox>
       );
@@ -51,6 +64,9 @@ export default class RecomendedCard extends Component {
 
 const FlexBox = styled.div`
    flex-basis: 50%;
+   @media (max-width: 591px) {
+      flex-basis: 100%;
+   }
    .recomendation-title{
        text-align: center;
        margin-bottom: 20px;

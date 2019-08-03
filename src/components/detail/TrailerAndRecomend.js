@@ -6,7 +6,7 @@ import TrailerCard from "components/cards/TrailerCard";
 function TrailerAndRecomend({ detailID, media, thumb }) {
    return (
       <StyledSection>
-         <TrailerCard detailID={detailID} thumb={thumb} />
+         <TrailerCard detailID={detailID} thumb={thumb} media={media} />
          <RecomendedCard detailID={detailID} media={media}/>
       </StyledSection>
    );
@@ -19,4 +19,5 @@ const StyledSection = styled.section`
    padding: 100px 10px;
    display: flex;
    flex-wrap: wrap;
+   justify-content: center;
 `;

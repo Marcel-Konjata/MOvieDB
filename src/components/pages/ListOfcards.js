@@ -3,6 +3,7 @@ import { dataFetch } from "dataFetch";
 import SelectionCard from "components/cards/SelectionCard";
 import styled from "styled-components";
 import PageNumbers from "components/cards/pageNumbers";
+import SelectionTitle from "components/SelectionTitle";
 
 class ListOfCards extends React.Component {
    state = { data: [], loading: true, activePage: 1 };
@@ -12,7 +13,7 @@ class ListOfCards extends React.Component {
       let response = await dataFetch(
          media,
          searchType,
-         "en",
+         this.props.lang,
          this.state.activePage
       );
       const data = await response.data;
@@ -27,7 +28,7 @@ class ListOfCards extends React.Component {
       if (
          prevProps.match.params.media !== this.props.match.params.media ||
          prevProps.match.params.searchType !==
-            this.props.match.params.searchType
+            this.props.match.params.searchType || this.props.lang !== prevProps.lang
       ) {
          //reset state to original value, loading is necessary data are not
          this.setState({ loading: true, data: [], activePage: 1 });
@@ -37,7 +38,7 @@ class ListOfCards extends React.Component {
             let response = await dataFetch(
                media,
                searchType,
-               "en",
+              this.props.lang,
                this.state.activePage
             );
             const data = await response.data;
@@ -50,7 +51,7 @@ class ListOfCards extends React.Component {
             let response = await dataFetch(
                media,
                searchType,
-               "en",
+               this.props.lang,
                this.state.activePage
             );
             const data = await response.data;
@@ -61,7 +62,13 @@ class ListOfCards extends React.Component {
    // this function renders all card gained from fetch
    updateCards = () =>
       this.state.data.results.map(item => {
-         return <SelectionCard {...item} key={item.id} media={this.props.match.params.media} />;
+         return (
+            <SelectionCard
+               {...item}
+               key={item.id}
+               media={this.props.match.params.media}
+            />
+         );
       });
 
    handlePageNumber = numberToSet => {
@@ -69,11 +76,15 @@ class ListOfCards extends React.Component {
    };
 
    render() {
-      
       return (
          <section>
-            <h1>{this.props.match.params.media}</h1>
-            <p>{this.props.match.params.searchType}</p>
+            <PageTitle>
+               <SelectionTitle
+                  media={this.props.match.params.media}
+                  searchType={this.props.match.params.searchType}
+                  lang={this.props.lang}
+               />
+            </PageTitle>
             {this.state.loading ? (
                "loading component will be there"
             ) : (
@@ -112,4 +123,22 @@ const CardGrid = styled.div`
    justify-items: center;
    align-items: center;
    grid-template-columns: repeat(5, auto);
+   @media (max-width:918px ) {
+      grid-template-columns: repeat(4, auto);
+   }
+   @media (max-width:678px ) {
+      grid-template-columns: repeat(3, auto);
+   }
+   @media (max-width:515px ) {
+      grid-template-columns: repeat(2, auto);
+   }
+`;
+
+const PageTitle = styled.div`
+   max-width: 1200px;
+   margin: 50px auto 20px;
+   h1 {
+      text-transform: capitalize;
+      font-size: 30px;
+   }
 `;

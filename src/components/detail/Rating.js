@@ -61,6 +61,7 @@ const Spinner = styled.div`
    .progress-ring {
       transform-origin: center;
       transform: rotate(-90deg);
+      
    }
 
    .progress-ring--circle {
@@ -68,6 +69,7 @@ const Spinner = styled.div`
          `stroke-dasharray: ${props.circumference};
       stroke-dashoffset: ${props.circumference -
          (props.percent / 100) * props.circumference};`}
+        
    }
 
    .rate-value {

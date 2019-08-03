@@ -5,27 +5,28 @@ import { mainGreen } from "Styled/colors";
 import MainInfo from "components/detail/MainInfo";
 import SecondaryInfo from "components/detail/SecondaryInfo";
 import TrailerAndRecomend from "components/detail/TrailerAndRecomend";
-
+import { ScrollToTopOnMount } from "utilities/ScrollTopOnMount";
 
 class DetailInfo extends React.Component {
-   state = { data: [] };
+   state = { data: [], loading: true };
 
    async componentDidMount() {
       const { media, id } = this.props.match.params;
-      const result = await getDetails(media, id);
+      const result = await getDetails(media, id, this.props.lang);
       const data = result.data;
 
-      this.setState({ data });
+      this.setState({ data, loading: false });
    }
-   componentDidUpdate(prevProps){
-      if(prevProps.match.params.id !== this.props.match.params.id ){
-         (async()=>{
+   componentDidUpdate(prevProps) {
+      if (prevProps.match.params.id !== this.props.match.params.id || this.props.lang!==prevProps.lang) {
+         this.setState({ data: [], loading: true });
+         (async () => {
             const { media, id } = this.props.match.params;
-            const result = await getDetails(media, id);
+            const result = await getDetails(media, id, this.props.lang);
             const data = result.data;
-      
-            this.setState({ data });
-         })()
+
+            this.setState({ data, loading: false });
+         })();
       }
    }
 
@@ -43,7 +44,8 @@ class DetailInfo extends React.Component {
          : null;
       return (
          <section>
-            {this.state.data ? (
+            <ScrollToTopOnMount />
+            {this.state.loading === false ? (
                <React.Fragment>
                   <Poster image={image} />
                   <FlexWrapper>
@@ -66,8 +68,6 @@ class DetailInfo extends React.Component {
                      media={this.props.match.params.media}
                      thumb={backdrop_path}
                   />
-                    
-                  
                </React.Fragment>
             ) : (
                "loading component will be here"
@@ -109,6 +109,9 @@ const PosterCard = styled.figure`
 
 const FlexWrapper = styled.div`
    padding: 80px 20px 120px;
+   @media (max-width:839px) {
+      flex-direction: column;
+   }
 
    display: flex;
    justify-content: center;

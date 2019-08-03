@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 function BannerCard(props) {
    let formatedDate = new Date(props.release_date);
@@ -26,13 +27,15 @@ function BannerCard(props) {
 
    return (
       <IntroCard  className={setClass()}>
-         <img style={{width: '100%', height: '100%'}}
-            src={`${"https://image.tmdb.org/t/p/"}/w500${props.backdrop_path}`}
-            alt="name"
-         />
+         <Link to={`/${props.medium}/detail/${props.id}`}>
+            <img style={{width: '100%', height: '100%'}}
+               src={`${"https://image.tmdb.org/t/p/"}/w500${props.backdrop_path}`}
+               alt="name"
+            />
+         </Link>
          <figcaption>
             <h3>{props.medium === "tv" ? props.name : props.title}</h3>
-           <p> {caption('cs')}</p>
+           <p> {caption(props.lang)}</p>
          </figcaption>
       </IntroCard>
    );
@@ -50,10 +53,18 @@ const IntroCard = styled.figure`
      color: #39FFB8;
      width:100%;
      background: rgba(0,0,0,.4);
+        @media (max-width:489px) {
+         h3 {
+            font-size: 16px;
+           
+            white-space: nowrap;
+         }
+        }
      p{
         text-align: right;
         padding: 5px;
         font-weight: 500;
+        }
      }
-  }
+  
 `;

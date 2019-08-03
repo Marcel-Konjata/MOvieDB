@@ -16,6 +16,7 @@ import styled from "styled-components";
         font-size: 36px;
     }    
     
+    
 `
 
 export default DescriptionForBanner

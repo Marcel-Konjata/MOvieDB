@@ -8,6 +8,7 @@ import HomePage from "components/pages/HomePage";
 import ListOfCards from "components/pages/ListOfcards";
 import DetailInfo from "components/pages/DetailInfo";
 import SearchResults from "components/pages/SearchResults";
+import { LangProvider, Localization } from "components/context/LanguageContext";
 
 class App extends React.Component {
    // this is pre written style of data fetching for elemnts containing movie bd info
@@ -19,19 +20,39 @@ class App extends React.Component {
 
    render() {
       return (
-         <BrowserRouter>
-            <>
-               <GlobalStyle />
-               <Layout>
-                  <Switch>
-                     <Route exact path="/" component={HomePage} />
-                     <Route exact path="/:media/:searchType" render={props => <ListOfCards {...props} />} />
-                     <Route exact path="/:media/detail/:id" component={DetailInfo} />
-                     <Route path="/search/:keyword" component={SearchResults} />
-                  </Switch>
-               </Layout>
-            </>
-         </BrowserRouter>
+         <LangProvider>
+            <BrowserRouter>
+               <>
+                  <GlobalStyle />
+                  <Layout>
+                     <Localization>
+                        {({ language }) => (
+                           <Switch>
+                              <Route exact path="/" component={HomePage} />
+                              <Route
+                                 exact
+                                 path="/search/results/get/:keyword"
+                                 component={SearchResults}
+                              />
+                              <Route
+                                 exact
+                                 path="/:media/:searchType"
+                                 render={props => <ListOfCards {...props} lang={language}/>}
+                              />
+                              <Route
+                                 exact
+                                 path="/:media/detail/:id"
+                                 render={props => (
+                                    <DetailInfo {...props} lang={language} />
+                                 )}
+                              />
+                           </Switch>
+                        )}
+                     </Localization>
+                  </Layout>
+               </>
+            </BrowserRouter>
+         </LangProvider>
       );
    }
 }

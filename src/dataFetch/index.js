@@ -33,20 +33,26 @@ export function dataFetch(media, searchType, lang = "en", page = "1") {
 
 // fetches for clicked detail
 
-export function getDetails(media, id, lang='en') {
+export function getDetails(media, id, lang = "en") {
    return Axios.get(
       `${baseURL}/${media}/${id}${APIkey}${languageQuery}${lang}`
    );
 }
 
-export function getCredits(media, id){
-   return Axios.get(
-      `${baseURL}/${media}/${id}/credits${APIkey}`
-   );
+export function getCredits(media, id) {
+   return Axios.get(`${baseURL}/${media}/${id}/credits${APIkey}`);
 }
 
-export function getRecomended(media, id){
+export function getRecomended(media, id) {
+   return Axios.get(`${baseURL}/${media}/${id}/recommendations${APIkey}`);
+}
+
+export function getTrailer(media, id) {
+   return Axios.get(`${baseURL}/${media}/${id}/videos${APIkey}`);
+}
+
+export function getSearchResults(media, keyword, lang = "en") {
    return Axios.get(
-      `${baseURL}/${media}/${id}/recommendations${APIkey}`
+      `${baseURL}/search/${media}${APIkey}&language=${lang}&query=${keyword}&page=1&include_adult=false`
    );
 }

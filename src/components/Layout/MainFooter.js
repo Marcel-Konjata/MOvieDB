@@ -31,7 +31,10 @@ const StyledFooter = styled.footer`
 display: flex;
 justify-content: flex-end;
 align-items: center;
-padding-top: 50px;
+padding: 50px 15px 10px;
+@media (max-width:574px) {
+    flex-direction: column;
+}
 .text{
     margin-left: auto;
     color: ${footerGreen};
@@ -50,6 +53,10 @@ padding-top: 50px;
 .imgWrapper{
     width: 450px;
     margin-left: auto;
+    @media (max-width:461px) {
+   width: 100%;
+}
+
     img{ width: 100%;}
 }
 `;
