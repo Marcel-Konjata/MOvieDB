@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import Circle from "./ProgressCircle";
-
+import Circle from "components/cards/ProgressCircle"
 
 function SelectionCard({ id, name, title, poster_path, vote_average,media }) {
+
+   
+
+
    return poster_path ? (
       <StyledCard>
          <figcaption>
@@ -28,10 +31,19 @@ const StyledCard = styled.figure`
       margin-bottom:10px;
       align-items: center;
       h3 {
+      height: 20px;
          font-size: 16px;
-         max-width: 120px;
+         width: 15ch;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         word-wrap: break-word;
+         white-space: nowrap;
 
       }
    }
+      img{
+         display: block;
+         margin: auto;
+      }
 `;
 

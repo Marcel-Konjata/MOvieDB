@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { mainGreen } from "Styled/colors";
+import { useSpring, animated } from "react-spring";
+import { Spring } from "react-spring/renderprops";
 
 function Rating({
    size = 60,
@@ -11,7 +13,11 @@ function Rating({
 }) {
    const radius = size / 2 - strokeWidth * 2;
    const circumference = radius * 2 * Math.PI; // circumference  je obvod
-
+   const styles = useSpring({
+      to: { strokeDashoffset: circumference - (rate / 100) * circumference },
+      from: { strokeDashoffset: circumference },
+      config: { mass: 110, friction: 126 }
+   });
    return (
       <Spinner
          circumference={circumference}
@@ -20,10 +26,12 @@ function Rating({
          height={size}
       >
          <svg className="progress-ring" height={size} width={size}>
-            <circle
+            <animated.circle
                className="progress-ring--circle"
                strokeWidth={strokeWidth}
                fill="transparent"
+               style={{ ...styles }}
+               strokeDasharray={circumference}
                stroke={color}
                r={radius} //radius set how big it will be
                cx={size / 2} //centre point x
@@ -48,7 +56,9 @@ function Rating({
                cy={size / 2} // centre point y
             />
          </svg>
-         <div className="rate-value">{rate}%</div>
+         <Spring from={{ number: 0 }} to={{ number: rate }} config={{mass:110, friction:126}}>
+            {({ number }) => <div className="rate-value">{number.toFixed()}%</div>}
+         </Spring>
       </Spinner>
    );
 }
@@ -61,15 +71,6 @@ const Spinner = styled.div`
    .progress-ring {
       transform-origin: center;
       transform: rotate(-90deg);
-      
-   }
-
-   .progress-ring--circle {
-      ${props =>
-         `stroke-dasharray: ${props.circumference};
-      stroke-dashoffset: ${props.circumference -
-         (props.percent / 100) * props.circumference};`}
-        
    }
 
    .rate-value {
