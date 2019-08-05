@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import {animated} from "react-spring/renderprops"
+
+
 import { getDetails, IMAGE_BASEURL } from "dataFetch";
 import { mainGreen } from "Styled/colors";
 import MainInfo from "components/detail/MainInfo";
@@ -43,7 +46,7 @@ class DetailInfo extends React.Component {
          ? `${IMAGE_BASEURL}/w1280/${backdrop_path}`
          : null;
       return (
-         <section>
+         <animated.section style={{opacity: this.props.style.opacity, position:this.props.style.position , width: '100%'}}>
             <ScrollToTopOnMount />
             {this.state.loading === false ? (
                <React.Fragment>
@@ -72,7 +75,7 @@ class DetailInfo extends React.Component {
             ) : (
                "loading component will be here"
             )}
-         </section>
+         </animated.section>
       );
    }
 }

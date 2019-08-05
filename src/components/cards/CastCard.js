@@ -6,7 +6,7 @@ import Uknown from "img/uknown.png"
 function CastCard({ name, profile_path, character }) {
    return (
       <StyledCard>
-         <div>
+         <div className="img-wrapper">
             {profile_path ? (
                <img src={`${IMAGE_BASEURL}/w185${profile_path}`} alt={name} />
             ) : (
@@ -21,6 +21,7 @@ function CastCard({ name, profile_path, character }) {
 export default CastCard;
 
 const StyledCard = styled.div`
+overflow: hidden;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -36,11 +37,13 @@ const StyledCard = styled.div`
    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
    img {
-      width: 98%;
+      width: 100%;
       display: block;
       border-radius: 5px;
       margin: 0 auto;
+      
    }
+   .img-wrapper{width: 98%; max-height: 85%; overflow: hidden }
    .actor-name {
       margin-top: 10px;
    }

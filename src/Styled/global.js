@@ -17,6 +17,9 @@ justify-content: space-between;
 min-height: 100%;
    main{
       flex-grow:1;
+      position:relative;
+      min-height: 80vh;
+      overflow: hidden;
    }
    header, main, footer{
       flex-shrink: 0

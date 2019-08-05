@@ -1,4 +1,6 @@
 import React from "react";
+import {animated} from "react-spring/renderprops"
+
 import Banners from "Styled/grids/Banners";
 import { GridBanner } from "Styled/grids/GridBanner";
 import { DescriptionForBanner } from "Styled";
@@ -10,7 +12,7 @@ function HomePage(props) {
    return (
       <Localization>
          {({ language }) => (
-            <IntroSection>
+            <IntroSection style={props.style}>
                <Banners>
                   <GridBanner reverse left>
                      <DescriptionForBanner>
@@ -33,7 +35,7 @@ function HomePage(props) {
 
 export default HomePage;
 
-const IntroSection = styled.section`
+const IntroSection = styled(animated.section)`
    margin-top: 120px;
    margin-bottom: 150px;
    @media (max-width:590px) {

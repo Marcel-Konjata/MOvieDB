@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import {animated} from "react-spring";
+
 import { menuGreen } from "Styled/colors";
 import { Link } from "react-router-dom";
 
-function SelectionMenu({ lang = "cs", mediumType }) {
+
+
+function SelectionMenu({ lang = "cs", mediumType, styles }) {
+  
+
+
    if (lang === "cs") {
       return mediumType === "tv" ? (
-         <StyledSelect>
+         <StyledSelect style={{...styles, transformOrigin:'top',}}>
             <ul>
                <li>
                   <Link to={`/${mediumType}/popular`}>oblibene</Link>
@@ -27,7 +34,7 @@ function SelectionMenu({ lang = "cs", mediumType }) {
             </ul>
          </StyledSelect>
       ) : (
-         <StyledSelect>
+         <StyledSelect style={{...styles, transformOrigin:'top',}}>
             <ul>
                <li>
                   <Link to={`/${mediumType}/popular`}>oblibene</Link>{" "}
@@ -51,7 +58,7 @@ function SelectionMenu({ lang = "cs", mediumType }) {
    }
    if (lang === "en") {
       return mediumType === "tv" ? (
-         <StyledSelect>
+         <StyledSelect style={{...styles, transformOrigin:'top',}}>
             <ul>
                <li>
                   <Link to={`/${mediumType}/popular`}>popular </Link>
@@ -72,7 +79,7 @@ function SelectionMenu({ lang = "cs", mediumType }) {
             </ul>
          </StyledSelect>
       ) : (
-         <StyledSelect>
+         <StyledSelect style={{...styles, transformOrigin:'top',}}>
             <ul>
                <li>
                   <Link to={`/${mediumType}/popular`}>popular</Link>{" "}
@@ -96,7 +103,7 @@ function SelectionMenu({ lang = "cs", mediumType }) {
 
 export default SelectionMenu;
 
-const StyledSelect = styled.div`
+const StyledSelect = styled(animated.div)`
    position: absolute;
    bottom: -126px;
    padding: 10px;

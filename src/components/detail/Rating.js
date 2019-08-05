@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { mainGreen } from "Styled/colors";
 import { useSpring, animated } from "react-spring";
-import { Spring } from "react-spring/renderprops";
+import { Spring, animated as animRP } from "react-spring/renderprops";
 
 function Rating({
    size = 60,
    strokeWidth = 5,
    color = "blue",
    rate = 100,
-   textsize = 16
+   textsize = 16,
+   styled
 }) {
    const radius = size / 2 - strokeWidth * 2;
    const circumference = radius * 2 * Math.PI; // circumference  je obvod
@@ -19,10 +20,10 @@ function Rating({
       config: { mass: 110, friction: 126 }
    });
    return (
-      <Spinner
+      <Spinner style={styled}
          circumference={circumference}
          percent={rate}
-         fontsize={textsize}
+         textsize={textsize}
          height={size}
       >
          <svg className="progress-ring" height={size} width={size}>
@@ -64,8 +65,9 @@ function Rating({
 }
 export default Rating;
 //offset = radius * 2 .math.PI
-const Spinner = styled.div`
+const Spinner = styled(animRP.div)`
    position: relative;
+ 
    display: inline-block;
    height: ${({ height }) => `${height}px`};
    .progress-ring {
@@ -78,7 +80,7 @@ const Spinner = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: ${props => props.fontsize}px;
+      font-size: ${props => props.textsize}px;
       font-family: "Quantico", -apple-system, BlinkMacSystemFont, "Segoe UI",
          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
          sans-serif;

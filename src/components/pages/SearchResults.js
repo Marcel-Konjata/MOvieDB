@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { animated } from "react-spring/renderprops";
+
 import { getSearchResults } from "dataFetch";
 import { Link } from "react-router-dom";
 
@@ -19,9 +21,15 @@ function SearchResults(props, { lang = "en" }) {
       })();
    }, [keyword]);
 
-   console.log(movieList);
+  
    return (
-      <div>
+      <animated.div
+         style={{
+            opacity: props.styled.opacity,
+            width: "100%",
+            position: props.styled.position
+         }}
+      >
          <MainHeader>
             {lang === "en" ? "Search Results" : "Výsledky Vyhledávání"}
          </MainHeader>
@@ -72,7 +80,7 @@ function SearchResults(props, { lang = "en" }) {
                <h2>{lang === "en" ? "No Results" : "Výsledky Nenalezeny"}</h2>
             ) : null}
          </StyledResults>
-      </div>
+      </animated.div>
    );
 }
 

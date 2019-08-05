@@ -6,7 +6,7 @@ import { Localization } from "components/context/LanguageContext";
 
 function SearchBar(props) {
    const [searchValue, setSearchValue] = React.useState("");
-   console.log(searchValue);
+ 
    function handleSubmit(event) {
       event.preventDefault();
       // push search into browser router history it will redirect to search page with params for fetch

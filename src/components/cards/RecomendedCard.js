@@ -1,24 +1,43 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {Spring, config} from "react-spring/renderprops";
 import { getRecomended } from "dataFetch";
 
 import { Localization } from "components/context/LanguageContext";
 
 export default class RecomendedCard extends Component {
-   state = { cardlist: [], loading: true };
+   state = { cardlist: [], loading: true, hovered: false };
    async componentDidMount() {
       const { media, detailID } = this.props;
       const response = await getRecomended(media, detailID);
       const data = response.data.results;
       this.setState({ cardlist: data, loading: false });
    }
+
+
+   HoverOn=()=>{
+      this.setState({hovered:true})
+   }
+   HoverOFF=()=>{
+      this.setState({hovered:false})
+   }
+
    renderCards = () => {
-      const { cardlist } = this.state;
+      const { cardlist,hovered } = this.state;
      
+
       return cardlist.map((item,index) => (
          index < 4 ?
-         <Card key={item.id}>
+
+         <Spring
+          to={{
+             transform: hovered? 'scale(1.12) rotate(10deg) translateY(10%)'  : 'scale(1) rotate(0deg) translateY(0%)',
+          }}
+          config={config.molasses}>
+          {styles=>(
+
+         <Card key={item.id} onMouseEnter={this.HoverOn} onMouseLeave={this.HoverOFF} style={{...styles}}>
             <Link to={`/${this.props.media}/detail/${item.id}`}>
                <img
                   src={`${"https://image.tmdb.org/t/p/"}/w154${
@@ -31,9 +50,14 @@ export default class RecomendedCard extends Component {
                   }
                />
             </Link>
-         </Card> : null
+         </Card>
+          )}
+         </Spring> : null
       ));
    };
+   handleMouseOver = () =>{
+
+   }
 
    render() {
       return (

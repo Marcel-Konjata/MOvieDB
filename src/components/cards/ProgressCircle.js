@@ -31,7 +31,7 @@ function Circle({ size = 60, strokeWidth = 5, color = "red", rate }) {
          <svg className="progress-ring" height={size} width={size}>
             <animated.circle
                className="progress-ring--circle"
-               stroke-width={strokeWidth}
+               strokeWidth={strokeWidth}
                strokeDasharray={circumference}
                style={{...styles}}
                fill="none"
