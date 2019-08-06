@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/Marcel-Konjata/MOvieDB/static/js/main.c5067234.chunk.js",
+    "main.js.map": "/Marcel-Konjata/MOvieDB/static/js/main.c5067234.chunk.js.map",
+    "runtime~main.js": "/Marcel-Konjata/MOvieDB/static/js/runtime~main.8c30f4df.js",
+    "runtime~main.js.map": "/Marcel-Konjata/MOvieDB/static/js/runtime~main.8c30f4df.js.map",
+    "static/js/2.7fa33cf5.chunk.js": "/Marcel-Konjata/MOvieDB/static/js/2.7fa33cf5.chunk.js",
+    "static/js/2.7fa33cf5.chunk.js.map": "/Marcel-Konjata/MOvieDB/static/js/2.7fa33cf5.chunk.js.map",
+    "index.html": "/Marcel-Konjata/MOvieDB/index.html",
+    "precache-manifest.c3479f100b44290db5eeb1fbdb4697e3.js": "/Marcel-Konjata/MOvieDB/precache-manifest.c3479f100b44290db5eeb1fbdb4697e3.js",
+    "service-worker.js": "/Marcel-Konjata/MOvieDB/service-worker.js",
+    "static/media/Subtract.png": "/Marcel-Konjata/MOvieDB/static/media/Subtract.3bb3a6cf.png",
+    "static/media/moviefooter1.png": "/Marcel-Konjata/MOvieDB/static/media/moviefooter1.f4709d9c.png",
+    "static/media/search.a87eca9e.svg": "/Marcel-Konjata/MOvieDB/static/media/search.a87eca9e.svg",
+    "static/media/uknown.png": "/Marcel-Konjata/MOvieDB/static/media/uknown.085f4871.png"
+  }
+}
