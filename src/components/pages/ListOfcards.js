@@ -112,7 +112,7 @@ class ListOfCards extends React.Component {
                />
             </PageTitle>
             {this.state.loading ? (
-               "loading component will be there"
+               "loading..."
             ) : (
                <React.Fragment>
                   {this.props.match.params.searchType !== "discover" && (

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { Transition } from "react-spring/renderprops";
 
 import Layout from "./components/Layout";
@@ -13,7 +13,7 @@ import { LangProvider, Localization } from "components/context/LanguageContext";
 function App() {
    return (
       <LangProvider>
-         <BrowserRouter>
+         <HashRouter>
             <Route
                render={({ location}) => (
                   <>
@@ -90,7 +90,7 @@ function App() {
                   </>
                )}
             />
-         </BrowserRouter>
+         </HashRouter>
       </LangProvider>
    );
 }

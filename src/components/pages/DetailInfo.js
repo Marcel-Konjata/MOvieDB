@@ -73,7 +73,7 @@ class DetailInfo extends React.Component {
                   />
                </React.Fragment>
             ) : (
-               "loading component will be here"
+               "loading..."
             )}
          </animated.section>
       );
